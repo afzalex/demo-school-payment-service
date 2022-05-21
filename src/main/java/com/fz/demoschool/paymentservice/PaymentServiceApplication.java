@@ -8,22 +8,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @SpringBootApplication
 @Slf4j
 public class PaymentServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PaymentServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceApplication.class, args);
+    }
 
-	@Autowired
-	private AccountDao accountDao;
+    @Autowired
+    private AccountDao accountDao;
 
-	@PostConstruct
-	public void tester() {
-		log.info("testinhg...");
-		accountDao.save(Account.builder().accountId(UUID.randomUUID().toString()).balance(100000).userName("Mohammad Afzal").build());
-	}
+    @PostConstruct
+    public void postConstruct() {
+        accountDao.save(Account.builder().accountId(UUID.randomUUID().toString())
+                .userName("Mohammad Afzal " + LocalDateTime.now())
+                .balance(10000)
+                .build());
+    }
 }

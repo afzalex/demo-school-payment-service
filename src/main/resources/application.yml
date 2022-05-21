@@ -1,13 +1,2 @@
-
-server:
-  port: ${PORT:8334}
-
-spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      username: root
-      password: password123
-      database: demo-school
-      authentication-database: admin
+spring.config.import: optional:configserver:${CONFIG_SERVER_URI:http://localhost:8312/}
+spring.cloud.config.name: common,eureka-client,payment-service
