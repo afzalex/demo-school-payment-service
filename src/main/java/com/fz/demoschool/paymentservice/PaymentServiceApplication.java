@@ -19,14 +19,4 @@ public class PaymentServiceApplication {
         SpringApplication.run(PaymentServiceApplication.class, args);
     }
 
-    @Autowired
-    private AccountDao accountDao;
-
-    @PostConstruct
-    public void postConstruct() {
-        accountDao.save(Account.builder().accountId(UUID.randomUUID().toString())
-                .userName("Mohammad Afzal " + LocalDateTime.now())
-                .balance(10000)
-                .build());
-    }
 }
